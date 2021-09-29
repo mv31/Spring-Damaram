@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import com.app.model.Admin;
 import com.app.model.User;
+import com.app.repository.AdminRepository;
 import com.app.repository.RegistrationRepository;
 import com.app.service.RegistrationService;
 
@@ -15,10 +17,9 @@ public class RegistartionServiceImpl implements RegistrationService {
 	@Autowired
 	private RegistrationRepository repo;
 	
-//	@Override
-//	public User saveUser(User user) {
-//		return repo.save(user);
-//	}
+	@Autowired
+	private AdminRepository adRepo;
+	
 
 	@Override
 	public User fetchUserByEmail(String tempEmail,User user) throws Exception  {
@@ -45,6 +46,21 @@ public class RegistartionServiceImpl implements RegistrationService {
 		
 		return userobj;
 	}
+
+	@Override
+	public Admin fetchAdminByAdminEmailAndAdminPassword(String email, String Password) throws Exception {
+		Admin adminobj = null;
+		if(email != null && Password !=null) {
+			adminobj = adRepo.findAdminByAdminEmailAndAdminPassword(email, Password);
+		}
+		if(adminobj == null) {
+			throw new Exception("Invalid Credentials");
+		}
+		
+		return adminobj;
+		
+	}
+	
 	
 
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.app.model.Admin;
 import com.app.model.User;
 import com.app.repository.RegistrationRepository;
 import com.app.service.RegistrationService;
@@ -43,6 +44,14 @@ public class RegistrationController {
 		String tempPass = user.getPassword();
 		
 		return repo.findUserByEmailAndPassword(tempEmail, tempPass);
+	}
+	
+	@PostMapping("/adminlogin")
+	public Admin adminLogin(@RequestBody Admin admin) throws Exception {
+		String tempEmail = admin.getAdminEmail();
+		String tempPass = admin.getAdminPassword();
+		
+		return service.fetchAdminByAdminEmailAndAdminPassword(tempEmail, tempPass);
 	}
 }
 

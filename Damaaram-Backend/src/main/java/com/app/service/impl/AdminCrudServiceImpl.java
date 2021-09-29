@@ -1,5 +1,7 @@
 package com.app.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,10 @@ public class AdminCrudServiceImpl implements AdminCrudService {
 	@Autowired
 	private RegistrationRepository regRepo;
 	
+	
 	@Override
-	public User getUserById(int id) {
-		return regRepo.findById(id).get();
+	public List<User> getAllUsers() {
+		return regRepo.findAll();
 	}
 
 	@Override

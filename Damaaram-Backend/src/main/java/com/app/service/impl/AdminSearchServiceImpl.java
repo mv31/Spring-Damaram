@@ -15,11 +15,13 @@ public class AdminSearchServiceImpl implements AdminSearchService {
 	@Autowired
 	private RegistrationRepository repo;
 
-	@Override
-	public List<User> getAllUsers() {
-		return repo.findAll();
-	}
+	
 
+	@Override
+	public User  getUserById(int id){
+		return repo.findById(id).get();
+	}
+	
 	@Override
 	public List<User> getUserByContact(long contact) {
 		return repo.findByContact(contact);

@@ -2,6 +2,8 @@ package com.app.controller;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,10 +26,9 @@ public class AdminCrudController {
 	@Autowired
 	private AdminCrudService service;
 	
-	
-	@GetMapping("/user/{id}")
-	public User getUserByID(@PathVariable int id) {
-		return service.getUserById(id);
+	@GetMapping("/users")
+	public List<User> getAllUsers(){
+		return service.getAllUsers();
 	}
 	
 	@PostMapping("/User")
