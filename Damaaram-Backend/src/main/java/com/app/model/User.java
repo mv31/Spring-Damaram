@@ -1,9 +1,13 @@
 package com.app.model;
 
+import java.util.List;
+
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
 import javax.persistence.Table;
 
 
@@ -22,14 +26,12 @@ public class User {
 	private String password; 
 	private long contact;
 	
-	@OneToMany
-	private Order order; 
 	
-	public User() {
-		
-		
-	}
-
+		public User() {
+			super();
+			
+		}
+	
 	public User(int id, String name, String email, String password, long contact) {
 		super();
 		this.id = id;

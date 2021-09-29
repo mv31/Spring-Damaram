@@ -21,12 +21,12 @@ public class RegistartionServiceImpl implements RegistrationService {
 //	}
 
 	@Override
-	public User fetchUserByEmail(String tempEmail,User user) { //throws Exception {
+	public User fetchUserByEmail(String tempEmail,User user) throws Exception  {
 		User userobj = null;
 		if(tempEmail != null && !"".equals(tempEmail)) {
 			 userobj = repo.findByEmail(tempEmail);
 			if(userobj != null) {
-				//throw new Exception("User with "+tempEmail+" is already exist");
+				throw new Exception("User with "+tempEmail+" is already exist");
 			}
 			
 		}
@@ -34,13 +34,13 @@ public class RegistartionServiceImpl implements RegistrationService {
 	}
 
 	@Override
-	public User fetchUserByEmailAndPassword(String tempEmail, String tempPass) {
+	public User fetchUserByEmailAndPassword(String tempEmail, String tempPass) throws Exception {
 		User userobj = null;
 		if(tempEmail != null && tempPass !=null) {
 			userobj = repo.findUserByEmailAndPassword(tempEmail, tempPass);
 		}
 		if(userobj == null) {
-			//throw new Exception("Invalid Credentials");
+			throw new Exception("Invalid Credentials");
 		}
 		
 		return userobj;

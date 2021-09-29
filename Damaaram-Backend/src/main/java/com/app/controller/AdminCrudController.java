@@ -39,6 +39,7 @@ public class AdminCrudController {
 	public void deleteUser(@PathVariable int id) {
 		 service.deleteUser(id);
 	}
+	
 }
 	
 	

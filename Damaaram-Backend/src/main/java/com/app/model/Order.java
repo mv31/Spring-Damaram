@@ -1,12 +1,16 @@
 package com.app.model;
 
+import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+
+
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -16,15 +20,17 @@ import lombok.Data;
 @Table
 public class Order {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private int orderId;
-	private String orderService;
 	private String orderStatus;
 	
-	@ManyToOne//(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id")
+	@OneToOne//(targetEntity = User.class,cascade = CascadeType.ALL)
+	@JoinColumn(name = "uo_fk")//,referencedColumnName = "id")
 	private User user;
 	
+	@OneToOne//(targetEntity = Product.class,cascade = CascadeType.ALL)
+	@JoinColumn(name = "po_fk")//,referencedColumnName = "productId")
+	private Product product;
 	
 
 }
